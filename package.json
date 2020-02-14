@@ -1,0 +1,34 @@
+{
+  "name": "apple-card-csv",
+  "version": "0.0.0",
+  "description": "",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Athan Reines",
+    "url": "https://github.com/kgryte"
+  },
+  "contributors": [
+    {
+      "name": "Athan Reines",
+      "url": "https://github.com/kgryte"
+    }
+  ],
+  "bin": {},
+  "scripts": {},
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kgryte/apple-card-csv.git"
+  },
+  "homepage": "https://github.com/kgryte/apple-card-csv",
+  "keywords": [
+    "apple card",
+    "transactions",
+    "csv"
+  ],
+  "bugs": {
+    "url": "https://github.com/kgryte/apple-card-csv/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
