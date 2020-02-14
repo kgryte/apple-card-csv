@@ -1,7 +1,7 @@
 {
   "name": "apple-card-csv",
   "version": "0.0.0",
-  "description": "",
+  "description": "Convert Apple Card statements to CSV.",
   "license": "Apache-2.0",
   "author": {
     "name": "Athan Reines",
@@ -29,6 +29,8 @@
   "bugs": {
     "url": "https://github.com/kgryte/apple-card-csv/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "pdfjs-dist": "^2.2.228"
+  },
   "devDependencies": {}
 }
