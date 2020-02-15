@@ -153,6 +153,17 @@ hr {
 }
 
 /**
+* Logo.
+*/
+
+.logo {
+  margin: 1rem 0 0 1rem;
+
+  background: url('../img/apple_card.svg') no-repeat;
+  background-size: contain;
+}
+
+/**
 * Hero.
 */
 
