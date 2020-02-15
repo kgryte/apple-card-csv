@@ -23,7 +23,9 @@
 html, body {
   padding: 0;
   margin: 0;
+
   font-family: 'Nunito Sans', sans-serif;
+
   background-color: white;
 }
 
@@ -39,6 +41,7 @@ a, a:hover {
 
 hr {
   padding: 1rem 0;
+
   border: 0;
   border-bottom: 1px solid var(--bg-color);
 }
@@ -56,29 +59,39 @@ hr {
 }
 
 .button-primary {
-  padding: 10px 22px;
-  background-color: var(--accent-color);
-  color: white;
   position: relative;
+
+  padding: 10px 22px;
+
+  color: white;
   text-decoration: none;
+
   border: 0;
+
+  background-color: var(--accent-color);
+
   transition: all .3s ease-out;
 }
 
 .button-primary:after {
   position: absolute;
-  content: "";
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--accent-color-light);
   right: -0.4rem;
   top: -0.4rem;
+
+  width: 1rem;
+  height: 1rem;
+
+  content: "";
+
+  background-color: var(--accent-color-light);
+
   transition: all 0.3s ease-out;
 }
 
 .button-primary:hover {
   text-shadow: 0px 1px 1px var(--accent-color-dark);
   color: white;
+
   transform: translate3D(0, -3px, 0);
 }
 
@@ -88,13 +101,16 @@ hr {
 
 .button-secondary {
   padding: 10px 22px;
+
   border: 2px solid var(--primary-color);
+
   transition: all 0.5s ease-out;
 }
 
 .button-secondary:hover {
-  border-color: var(--accent-color);
   color: var(--accent-color);
+
+  border-color: var(--accent-color);
 }
 
 /**
@@ -123,15 +139,17 @@ hr {
 */
 
 .wrapper {
-  margin: 0 auto;
   width: 70%;
+  margin: 0 auto;
 }
 
 .footer {
-  text-align: center;
-  background-color: var(--primary-color);
   padding: 2rem;
+
+  text-align: center;
   color: white;
+
+  background-color: var(--primary-color);
 }
 
 /**
@@ -139,9 +157,11 @@ hr {
 */
 
 .hero {
+  padding: 6rem 0 4rem 0;
+
   text-align: center;
+
   background-color: var(--bg-color);
-  padding: 2rem 0 10rem 0;
 }
 
 .hero-title {
@@ -150,5 +170,5 @@ hr {
 }
 
 .hero-description {
-  margin: -1rem auto 2rem auto;
+  margin: 0 auto 2rem auto;
 }
