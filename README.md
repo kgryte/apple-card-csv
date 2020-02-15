@@ -189,8 +189,8 @@ Options:
 ```bash
 $ apple-card-csv ./path/to/statement.pdf
 Date,Type,Description,Daily Cash (%),Daily Cash ($),Amount
-"10/03/2019","Transactions","FOOBAR","2%","$1.29","$64.31"
-"10/04/2019","Transactions","BEEPBOOP","2%","$0.68","$33.98"
+"10/03/2019","Transactions","FOO BAR","2%","$1.29","$64.31"
+"10/04/2019","Transactions","BEEP BOOP","2%","$0.68","$33.98"
 ...
 ```
 
@@ -198,8 +198,8 @@ To use as a [standard stream][standard-streams],
 
 ```bash
 $ cat ./path/to/statement.pdf | apple-card-csv
-"10/03/2019","Transactions","FOOBAR","2%","$1.29","$64.31"
-"10/04/2019","Transactions","BEEPBOOP","2%","$0.68","$33.98"
+"10/03/2019","Transactions","FOO BAR","2%","$1.29","$64.31"
+"10/04/2019","Transactions","BEEP BOOP","2%","$0.68","$33.98"
 ...
 ```
 
