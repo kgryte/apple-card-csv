@@ -18,16 +18,16 @@
 
 var join = require( 'path' ).join;
 var readFileSync = require( '@stdlib/fs/read-file' ).sync;
-var convert = require( './../lib' );
+var parse = require( './../lib' );
 
 var fpath = join( __dirname, 'fixtures', 'statement.pdf' );
 var src = readFileSync( fpath );
 
-convert( src, done );
+parse( src, done );
 
-function done( error, csv ) {
+function done( error, data ) {
 	if ( error ) {
 		return console.error( error.message );
 	}
-	console.log( csv );
+	console.log( data );
 }

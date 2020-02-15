@@ -18,9 +18,9 @@ limitations under the License.
 
 -->
 
-# Apple Card Statement CSV
+# Apple Card Statement
 
-> Converts an Apple Card statement to CSV.
+> Parses an Apple Card statement.
 
 <!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
 
@@ -28,7 +28,7 @@ limitations under the License.
 
 For older Apple devices supporting Apple Wallet (e.g., iPhone 6, iPhone 5, etc), but no longer supporting OS updates (iOS < 13), users are unable to export their Apple Card statements as CSV.
 
-To support these older devices, this package generates CSV by reading and parsing exported statement PDFs. 
+To support these older devices, this package reads and parses exported statement PDFs for subsequent CSV generation. 
 
 </section>
 
@@ -41,12 +41,12 @@ To support these older devices, this package generates CSV by reading and parsin
 ## Usage
 
 ```javascript
-var convert = require( 'apple-card-csv' );
+var parse = require( 'apple-card-csv' );
 ```
 
-#### convert( src, clbk )
+#### parse( src, clbk )
 
-Converts one or more statements to CSV.
+Parses one or more statements.
 
 ```javascript
 var resolve = require( 'path' ).resolve;
@@ -56,17 +56,17 @@ var readFileSync = require( '@stdlib/fs/read-file' ).sync;
 var fpath = resolve( cwd(), 'path', 'to', 'statement.pdf' );
 var src = readFileSync( fpath );
 
-convert( src, done );
+parse( src, done );
 
-function done( error, results ) {
+function done( error, data ) {
     if ( error ) {
         return console.error( error.message );
     }
-    console.log( results );
+    console.log( data );
 }
 ```
 
-To convert more than one statement, provide an `Array` of statements, where each element is a `Uint8Array` containing statement binary data.
+To parse more than one statement, provide an `Array` of statements, where each element is a `Uint8Array` containing statement binary data.
 
 </section>
 
@@ -91,18 +91,18 @@ To convert more than one statement, provide an `Array` of statements, where each
 ```javascript
 var join = require( 'path' ).join;
 var readFileSync = require( '@stdlib/fs/read-file' ).sync;
-var convert = require( 'apple-card-csv' );
+var parse = require( 'apple-card-csv' );
 
 var fpath = join( __dirname, 'examples', 'fixtures', 'statement.pdf' );
 var src = readFileSync( fpath );
 
-convert( src, done );
+parse( src, done );
 
-function done( error, csv ) {
+function done( error, data ) {
     if ( error ) {
         return console.error( error.message );
     }
-    console.log( csv );
+    console.log( data );
 }
 ```
 

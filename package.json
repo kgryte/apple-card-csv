@@ -1,7 +1,7 @@
 {
   "name": "apple-card-csv",
   "version": "0.0.0",
-  "description": "Convert Apple Card statements to CSV.",
+  "description": "Parse an Apple Card statement.",
   "license": "Apache-2.0",
   "author": {
     "name": "Athan Reines",
@@ -41,8 +41,17 @@
   },
   "devDependencies": {},
   "keywords": [
+    "apple",
     "apple card",
+    "apple wallet",
+    "wallet",
+    "statement",
     "transactions",
-    "csv"
+    "csv",
+    "parse",
+    "parser",
+    "mint",
+    "tiller",
+    "personal capital"
   ]
 }
