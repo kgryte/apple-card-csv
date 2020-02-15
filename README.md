@@ -71,7 +71,7 @@ To parse more than one statement, provide an `Array` of statements, where each e
 Returned data has the following format:
 
 -   **Date**: transaction date. The field value has the following format: `MM/DD/YY`.
--   **Type** transaction type; e.g., `'Transactions'`, `'Payments'`, etc.
+-   **Type** transaction type; e.g., `'Transactions'`, `'Payments'`, `'Interest Charged'`.
 -   **Description**: transaction description.
 -   **Daily Cash (%)**: daily cash percentage.
 -   **Daily Cash ($)**: daily cash amount.
