@@ -13,19 +13,24 @@
       "url": "https://github.com/kgryte"
     }
   ],
-  "bin": {},
+  "bin": {
+    "apple-card-csv": "./bin/cli"
+  },
+  "main": "./lib",
+  "directories": {
+    "benchmark": "./benchmark",
+    "doc": "./docs",
+    "example": "./examples",
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "types": "./docs/types",
   "scripts": {},
-  "main": "",
+  "homepage": "https://github.com/kgryte/apple-card-csv",
   "repository": {
     "type": "git",
     "url": "git://github.com/kgryte/apple-card-csv.git"
   },
-  "homepage": "https://github.com/kgryte/apple-card-csv",
-  "keywords": [
-    "apple card",
-    "transactions",
-    "csv"
-  ],
   "bugs": {
     "url": "https://github.com/kgryte/apple-card-csv/issues"
   },
@@ -34,5 +39,10 @@
     "debug": "^4.1.1",
     "pdfjs-dist": "^2.2.228"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "keywords": [
+    "apple card",
+    "transactions",
+    "csv"
+  ]
 }
