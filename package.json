@@ -30,6 +30,8 @@
     "url": "https://github.com/kgryte/apple-card-csv/issues"
   },
   "dependencies": {
+    "@stdlib/stdlib": "0.0.90",
+    "debug": "^4.1.1",
     "pdfjs-dist": "^2.2.228"
   },
   "devDependencies": {}

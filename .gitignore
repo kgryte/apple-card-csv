@@ -26,6 +26,7 @@ reports/
 build/
 tmp/
 downloads/
+examples/fixtures/
 
 # Compiled source #
 ###################
