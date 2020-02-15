@@ -141,31 +141,74 @@ tape( 'when invoked with a `-V` flag, the command-line interface prints the vers
 	}
 });
 
-tape( 'the command-line interface does TODO', opts, function test( t ) {
+tape( 'the command-line interface converts an Apple Card statement to CSV', opts, function test( t ) {
+	var file;
 	var opts;
 	var cmd;
 
+	file = resolve( __dirname, 'fixtures', 'statement.pdf' );
 	cmd = [
 		process.execPath,
 		'-e',
-		'"process.stdin.isTTY = true; process.argv[ 2 ] = \'TODO\'; require( \''+fpath+'\' );"'
+		'"process.stdin.isTTY = true; process.argv[ 2 ] = \''+file+'\'; require( \''+fpath+'\' );"'
 	];
 	opts = {};
 
 	exec( cmd.join( ' ' ), opts, done );
 
 	function done( error, stdout, stderr ) {
+		var expected;
+		var fpath;
+		var fopts;
 		if ( error ) {
 			t.fail( error.message );
 		} else {
-			t.strictEqual( stdout.toString(), 'TODO', 'prints expected results to stdout' );
+			fpath = resolve( __dirname, 'fixtures', 'expected.csv' );
+			fopts = {
+				'encoding': 'utf8'
+			};
+			expected = readFileSync( fpath, fopts );
+			t.strictEqual( stdout.toString(), expected, 'prints expected results to stdout' );
 			t.strictEqual( stderr.toString(), '', 'does not print to `stderr`' );
 		}
 		t.end();
 	}
 });
 
-// TODO: add additional tests
+tape( 'the command-line interface supports use as a standard stream', opts, function test( t ) {
+	var file;
+	var opts;
+	var cmd;
+
+	file = resolve( __dirname, 'fixtures', 'statement.pdf' );
+	cmd = [
+		'cat "'+file+'"',
+		'|',
+		process.execPath,
+		fpath
+	];
+	opts = {};
+
+	exec( cmd.join( ' ' ), opts, done );
+
+	function done( error, stdout, stderr ) {
+		var expected;
+		var fpath;
+		var fopts;
+		if ( error ) {
+			t.fail( error.message );
+		} else {
+			fpath = resolve( __dirname, 'fixtures', 'expected.csv' );
+			fopts = {
+				'encoding': 'utf8'
+			};
+			expected = readFileSync( fpath, fopts );
+			t.strictEqual( stdout.toString(), expected, 'expected value' );
+			t.strictEqual( stderr.toString(), '', 'does not print to `stderr`' );
+		}
+		t.end();
+	}
+});
 
 tape( 'when used as a standard stream, if an error is encountered when reading from `stdin`, the command-line interface prints an error and sets a non-zero exit code', opts, function test( t ) {
 	var script;
