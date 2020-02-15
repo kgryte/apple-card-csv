@@ -68,6 +68,37 @@ function done( error, data ) {
 
 To parse more than one statement, provide an `Array` of statements, where each element is a `Uint8Array` containing statement binary data.
 
+Returned data has the following format:
+
+-   **Date**: transaction date. The field value has the following format: `MM/DD/YY`.
+-   **Type** transaction type; e.g., `'Transactions'`, `'Payments'`, etc.
+-   **Description**: transaction description.
+-   **Daily Cash (%)**: daily cash percentage.
+-   **Daily Cash ($)**: daily cash amount.
+-   **Amount**: transaction amount.
+
+```text
+[
+  {
+    'Date': '10/03/2019',
+    'Type': 'Transactions',
+    'Description': 'FOO BAR',
+    'Daily Cash (%)': '2%',
+    'Daily Cash ($)': '$1.29',
+    'Amount': '$64.31'
+  },
+  {
+    'Date': '10/04/2019',
+    'Type': 'Transactions',
+    'Description': 'BEEP BOOP',
+    'Daily Cash (%)': '2%',
+    'Daily Cash ($)': '$0.68',
+    'Amount': '$33.98'
+  },
+  ...
+]
+```
+
 </section>
 
 <!-- /.usage -->
