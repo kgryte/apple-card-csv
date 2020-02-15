@@ -159,6 +159,8 @@ Options:
 $ apple-card-csv ./path/to/statement.pdf
 ```
 
+To use as a [standard stream][standard-streams],
+
 ```bash
 $ cat ./path/to/statement.pdf | apple-card-csv
 ```
@@ -182,6 +184,8 @@ $ cat ./path/to/statement.pdf | apple-card-csv
 <!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
 
 <section class="links">
+
+[standard-streams]: https://en.wikipedia.org/wiki/Standard_streams
 
 </section>
 
