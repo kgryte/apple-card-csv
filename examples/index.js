@@ -17,10 +17,11 @@
 */
 
 var join = require( 'path' ).join;
-var readFileSync = require( 'fs' ).readFileSync;
+var readFileSync = require( '@stdlib/fs/read-file' ).sync;
 var convert = require( './../lib' );
 
-var src = readFileSync( join( __dirname, 'fixtures', 'statement.pdf' ) );
+var fpath = join( __dirname, 'fixtures', 'statement.pdf' );
+var src = readFileSync( fpath );
 
 convert( src, done );
 
