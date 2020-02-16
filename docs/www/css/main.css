@@ -175,9 +175,9 @@ hr {
 */
 
 .hero {
-	height: 540px;
+	height: 520px;
 
-	padding: 6rem 0 4rem 0;
+	padding-top: 6rem;
 
 	text-align: center;
 
