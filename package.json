@@ -32,9 +32,9 @@
     "build:js": "npm run build:js:main && npm run build:js:worker",
     "build:js:min": "npm run build:js:main:min && npm run build:js:worker:min",
     "build:js:main": "browserify ./docs/www/js/main.js  > ./docs/www/js/bundle.js",
-    "build:js:main:min": "browserify ./docs/www/js/main.js | uglifyjs > ./docs/www/js/bundle.js",
+    "build:js:main:min": "browserify ./docs/www/js/main.js | uglifyjs --compress --mangle > ./docs/www/js/bundle.js",
     "build:js:worker": "browserify ./docs/www/js/worker.js > ./docs/www/js/bundle.worker.js",
-    "build:js:worker:min": "browserify ./docs/www/js/worker.js | uglifyjs > ./docs/www/js/bundle.worker.js"
+    "build:js:worker:min": "browserify ./docs/www/js/worker.js | uglifyjs --compress --mangle > ./docs/www/js/bundle.worker.js"
   },
   "homepage": "https://github.com/kgryte/apple-card-csv",
   "repository": {
