@@ -3,17 +3,17 @@
 */
 
 :root {
-  --primary-color: #432E30;
-  --primary-color-light: #8E7474;
-  --accent-color: #FE6A6B;
-  --accent-color-light: #FFE4E4;
-  --accent-color-dark: #B94B4C;
-  --white-color: #FAFBFC;
-  --light-gray-color: #C6CBD1;
-  --medium-gray-color: #959DA5;
-  --dark-gray-color: #444D56;
-  --bg-color: #F8F8FA;
-  --code-bg-color: #F0E8E8;
+	--primary-color: #432E30;
+	--primary-color-light: #8E7474;
+	--accent-color: #FE6A6B;
+	--accent-color-light: #FFE4E4;
+	--accent-color-dark: #B94B4C;
+	--white-color: #FAFBFC;
+	--light-gray-color: #C6CBD1;
+	--medium-gray-color: #959DA5;
+	--dark-gray-color: #444D56;
+	--bg-color: #F8F8FA;
+	--code-bg-color: #F0E8E8;
 }
 
 /**
@@ -21,33 +21,33 @@
 */
 
 html, body {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 
-  font-family: 'Nunito Sans', sans-serif;
+	font-family: 'Nunito Sans', sans-serif;
 
-  background-color: white;
+	background-color: white;
 }
 
 p {
-  font-weight: 300;
-  color: #4A4A4A;
+	font-weight: 300;
+	color: #4A4A4A;
 }
 
 a, a:hover {
-  text-decoration: none;
-  color: var(--primary-color);
+	text-decoration: none;
+	color: var(--primary-color);
 }
 
 hr {
-  padding: 1rem 0;
+	padding: 1rem 0;
 
-  border: 0;
-  border-bottom: 1px solid var(--bg-color);
+	border: 0;
+	border-bottom: 1px solid var(--bg-color);
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /**
@@ -55,62 +55,62 @@ hr {
 */
 
 .section-title {
-  color: var(--primary-color);
+	color: var(--primary-color);
 }
 
 .button-primary {
-  position: relative;
+	position: relative;
 
-  padding: 10px 22px;
+	padding: 10px 22px;
 
-  color: white;
-  text-decoration: none;
+	color: white;
+	text-decoration: none;
 
-  border: 0;
+	border: 0;
 
-  background-color: var(--accent-color);
+	background-color: var(--accent-color);
 
-  transition: all .3s ease-out;
+	transition: all .3s ease-out;
 }
 
 .button-primary:after {
-  position: absolute;
-  right: -0.4rem;
-  top: -0.4rem;
+	position: absolute;
+	right: -0.4rem;
+	top: -0.4rem;
 
-  width: 1rem;
-  height: 1rem;
+	width: 1rem;
+	height: 1rem;
 
-  content: "";
+	content: "";
 
-  background-color: var(--accent-color-light);
+	background-color: var(--accent-color-light);
 
-  transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
 }
 
 .button-primary:hover {
-  text-shadow: 0px 1px 1px var(--accent-color-dark);
-  color: white;
+	text-shadow: 0px 1px 1px var(--accent-color-dark);
+	color: white;
 
-  transform: translate3D(0, -3px, 0);
+	transform: translate3D(0, -3px, 0);
 }
 
 .button-primary:hover::after {
-  transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 .button-secondary {
-  padding: 10px 22px;
+	padding: 10px 22px;
 
-  border: 2px solid var(--primary-color);
+	border: 2px solid var(--primary-color);
 
-  transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
 }
 
 .button-secondary:hover {
-  color: var(--accent-color);
+	color: var(--accent-color);
 
-  border-color: var(--accent-color);
+	border-color: var(--accent-color);
 }
 
 /**
@@ -118,20 +118,20 @@ hr {
 */
 
 .link {
-  text-decoration: none;
-  transition: all 0.3s ease-out;
+	text-decoration: none;
+	transition: all 0.3s ease-out;
 }
 
 .link:hover {
-  color: var(--accent-color);
+	color: var(--accent-color);
 }
 
 .link-dark {
-  color: var(--primary-color);
+	color: var(--primary-color);
 }
 
 .link-light {
-  color: var(--accent-color);
+	color: var(--accent-color);
 }
 
 /**
@@ -139,17 +139,17 @@ hr {
 */
 
 .wrapper {
-  width: 70%;
-  margin: 0 auto;
+	width: 70%;
+	margin: 0 auto;
 }
 
 .footer {
-  padding: 2rem;
+	padding: 2rem;
 
-  text-align: center;
-  color: white;
+	text-align: center;
+	color: white;
 
-  background-color: var(--primary-color);
+	background-color: var(--primary-color);
 }
 
 /**
@@ -157,10 +157,10 @@ hr {
 */
 
 .logo {
-  margin: 1rem 0 0 1rem;
+	margin: 1rem 0 0 1rem;
 
-  background: url('../img/apple_card.svg') no-repeat;
-  background-size: contain;
+	background: url('../img/apple_card.svg') no-repeat;
+	background-size: contain;
 }
 
 /**
@@ -168,18 +168,24 @@ hr {
 */
 
 .hero {
-  padding: 6rem 0 4rem 0;
+	height: 540px;
 
-  text-align: center;
+	padding: 6rem 0 4rem 0;
 
-  background-color: var(--bg-color);
+	text-align: center;
+
+	background-color: var(--bg-color);
 }
 
 .hero-title {
-  font-weight: 900;
-  color: var(--primary-color);
+	font-weight: 900;
+	color: var(--primary-color);
 }
 
 .hero-description {
-  margin: 0 auto 2rem auto;
+	margin: 0 auto 2rem auto;
+}
+
+.hero-image {
+	width: 360px;
 }
