@@ -24,6 +24,7 @@ html, body {
 	padding: 0;
 	margin: 0;
 
+	font-size: 18px;
 	font-family: sans-serif;
 
 	background-color: white;
@@ -118,6 +119,7 @@ hr {
 */
 
 .link {
+	color: var(--accent-color);
 	text-decoration: none;
 	transition: all 0.3s ease-out;
 }
@@ -126,24 +128,17 @@ hr {
 	color: var(--accent-color);
 }
 
-.link-dark {
-	color: var(--primary-color);
-}
-
-.link-light {
-	color: var(--accent-color);
-}
-
 /**
 * Layout.
 */
 
 .wrapper {
-	width: 70%;
+	width: 680px;
 	margin: 0 auto;
 }
 
 .footer {
+	margin-top: 4rem;
 	padding: 2rem;
 
 	text-align: center;
@@ -151,6 +146,9 @@ hr {
 
 	background-color: var(--primary-color);
 }
+
+/* TODO: add media query */
+
 
 /**
 * Logo.
@@ -177,7 +175,8 @@ hr {
 .hero {
 	height: 520px;
 
-	padding-top: 6rem;
+	padding-top: 5rem;
+	margin-bottom: 4rem;
 
 	text-align: center;
 
