@@ -25,7 +25,9 @@ html, body {
 	margin: 0;
 
 	font-size: 18px;
-	font-family: sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
 	background-color: white;
 }
@@ -147,8 +149,11 @@ hr {
 	background-color: var(--primary-color);
 }
 
-/* TODO: add media query */
-
+@media (max-width: 750px) {
+	.wrapper {
+		width: 480px;
+	}
+}
 
 /**
 * Logo.
