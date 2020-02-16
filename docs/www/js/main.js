@@ -22,6 +22,7 @@
 
 var logger = require( 'debug' );
 var replace = require( '@stdlib/string/replace' );
+var lowercase = require( '@stdlib/string/lowercase' );
 var Uint8Array = require( '@stdlib/array/uint8' );
 var array2csv = require( './../../../lib/array2csv.js' );
 var parse = require( './../../../lib' );
@@ -321,7 +322,7 @@ function main() {
 		* @returns {string} output filename
 		*/
 		function createFilename( drange ) {
-			return 'apple_card_statement_' + replace( drange, ' ', '_' ) + '.csv';
+			return 'apple_card_statement_' + lowercase( replace( drange, ' ', '_' ) ) + '.csv';
 		}
 
 		/**
