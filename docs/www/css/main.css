@@ -157,6 +157,13 @@ hr {
 */
 
 .logo {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 60px;
+	height: 20px;
+
 	margin: 1rem 0 0 1rem;
 
 	background: url('../img/apple_card.svg') no-repeat;
