@@ -26,8 +26,9 @@
   },
   "types": "./docs/types",
   "scripts": {
-    "build": "npm run build:js",
-    "build:min": "npm run build:js:min",
+    "build": "npm run build:js && npm run build:css",
+    "build:min": "npm run build:js:min && npm run build:css",
+    "build:css": "cleancss --compatibility ie9 -O 1 ./docs/www/css/main.css > ./docs/www/css/main.min.css",
     "build:js": "npm run build:js:main && npm run build:js:worker",
     "build:js:min": "npm run build:js:main:min && npm run build:js:worker:min",
     "build:js:main": "browserify ./docs/www/js/main.js  > ./docs/www/js/bundle.js",
