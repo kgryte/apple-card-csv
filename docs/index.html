@@ -54,8 +54,17 @@
   </div>
 
   <div class="wrapper">
+  	<div class="step-0">
+  		<h3 class="section-title">Privacy Notice</h3>
+  		<p>
+  			The personal information contained in your statements <strong>never</strong> leaves your device. All statements are converted locally in your browser.
+  		</p>
+  	</div>
+
+  	<hr/>
+
   	<div class="step-1">
-  		<h3 class="section-title">Step 1</h3>
+  		<h3 class="section-title">Step 1: Export Statements</h3>
   		<p>
   			First, download each Apple Card statement from your <a href="https://support.apple.com/en-us/HT204003" target="_blank" class="link">Wallet</a> by doing the following:
   		</p>
@@ -105,6 +114,32 @@
 				</li>
 			<ol>
   	</div>
+
+  	<hr />
+
+    <div class="step-2">
+  		<h3 class="section-title">Step 2: Upload Statements</h3>
+  		<p class="file-input-wrapper">
+  			<input name="file" class="file-input" id="file-input" type="file" accept="application/pdf"  data-multiple-caption="{count} files selected" multiple required>
+  			<label for="file-input">
+  				<span>Add statements&hellip;</span>
+  			</label>
+  		</p>
+  		<p class="file-input-error-text" id="file-input-error-text"></p>
+  	</div>
+
+  	<hr />
+
+  	<div class="step-3">
+  		<h3 class="section-title">Step 3: Download CSV</h3>
+  		<p>
+  			Click on the links below to save your CSV files...
+  		</p>
+  		<ul id="csv-list">
+  			<li><a class="link" download>(private)</a></li>
+  		</ul>
+    <hr />
+
     <div class="notes">
     	<h3 class="section-title">Note</h3>
       <p>
@@ -121,5 +156,6 @@
   <footer class="footer">
   	Questions? Comments? Contact me <a href="https://twitter.com/kgryte" target="_blank" class="link">@kgryte</a>.
   </footer>
+  <script type="text/javascript" src="www/js/bundle.js"></script>
 </body>
 </html>

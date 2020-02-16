@@ -214,3 +214,72 @@ hr {
 .hero-image {
 	width: 360px;
 }
+
+/**
+* File input.
+*/
+
+.file-input-wrapper {
+	padding: 6.25rem 1.25rem;
+
+	text-align: center;
+
+	background-color: var(--bg-color);
+}
+
+.file-input {
+    position: absolute;
+    z-index: -1;
+
+    width: 0.1px;
+    height: 0.1px;
+
+    opacity: 0;
+    overflow: hidden;
+}
+
+.file-input + label {
+    display: inline-block;
+    width: 200px;
+
+    margin: auto;
+    padding: 0.625rem 1.25rem;
+
+    overflow: hidden;
+    color: white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    background-color: var(--accent-color);
+}
+
+.file-input:focus + label,
+.file-input + label:hover {
+	outline: 1px solid var(--accent-color);
+}
+
+.file-input:focus-within + label {
+	outline: 1px solid var(--accent-color);
+}
+
+.file-input-error-text {
+	color: var(--accent-color);
+}
+
+/**
+* CSV list.
+*/
+
+#csv-list li:first-child {
+	display: none;
+}
+
+#csv-list li a[download]{
+	display: block;
+
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
