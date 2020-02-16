@@ -19,6 +19,8 @@
 # Files #
 #########
 TODO.md
+docs/index.html
+docs/favicon.ico
 
 
 # Directories #
@@ -27,6 +29,7 @@ build/
 reports/
 support/
 tmp/
+docs/www/
 
 
 # Node.js #
