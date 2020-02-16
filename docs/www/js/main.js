@@ -30,7 +30,6 @@ var parse = require( './../../../lib' );
 
 // VARIABLES //
 
-logger.enable( 'apple-card-csv:app' );
 var debug = logger( 'apple-card-csv:app' );
 
 
