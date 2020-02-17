@@ -139,12 +139,6 @@ hr {
 }
 
 /**
-* Images.
-*/
-
-
-
-/**
 * Layout.
 */
 
@@ -158,9 +152,13 @@ hr {
 	padding: 2rem;
 
 	text-align: center;
-	color: white;
 
 	background-color: var(--primary-color);
+}
+
+.footer,
+.footer p {
+	color: white;
 }
 
 @media (max-width: 750px) {
