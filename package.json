@@ -1,6 +1,6 @@
 {
   "name": "apple-card-csv",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Parse an Apple Card statement.",
   "license": "Apache-2.0",
   "author": {
