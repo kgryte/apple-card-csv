@@ -132,6 +132,7 @@ hr {
 	color: var(--accent-color);
 	text-decoration: none;
 	transition: all 0.3s ease-out;
+	cursor: pointer;
 }
 
 .link:hover {

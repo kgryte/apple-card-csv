@@ -39,9 +39,6 @@
 
 	<!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="css/main.min.css">
-
-	<!-- Scripts -->
-	<!-- TODO -->
 </head>
 <body>
 	<!-- <div class="logo"></div> -->
@@ -162,11 +159,33 @@
   		Questions? Comments? Contact me <a href="https://twitter.com/kgryte" target="_blank" class="link">@kgryte</a>.
   	</p>
   	<p>
-  		<a href="https://app.termly.io/document/privacy-policy/d3a63558-285a-473a-a8e3-dc9338e5ceb1" target="_blank" class="link">Privacy Policy</a>
-  		/
   		<a href="legal/terms-and-conditions/" target="_blank" class="link">Terms and Conditions</a>
+  		|
+  		<a href="https://app.termly.io/document/privacy-policy/d3a63558-285a-473a-a8e3-dc9338e5ceb1" target="_blank" class="link">Privacy Policy</a>
+  		|
+  		<a href="legal/cookie-policy/" target="_blank" class="link">Cookie Policy</a>
+  		|
+  		<a id="change-preferences" target="_blank" class="link">Cookie Preferences</a>
   	</p>
   </footer>
+
+  <!-- Cookie Consent -->
+	<script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/3.0.0/cookie-consent.js"></script>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function onLoaded() {
+			cookieconsent.run({
+				"notice_banner_type": "headline",
+				"consent_type": "express",
+				"palette": "light",
+				"language": "en",
+				"website_name": "Apple Card CSV",
+				"cookies_policy_url": "https://kgryte.github.io/apple-card-csv/www/cookie-policy/",
+				"change_preferences_selector":"#change-preferences"
+			});
+		});
+	</script>
+	<!-- End Cookie Consent -->
+
   <script type="text/javascript" src="js/bundle.js"></script>
 </body>
 </html>
