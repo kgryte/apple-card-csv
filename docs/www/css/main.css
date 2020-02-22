@@ -168,6 +168,12 @@ hr {
 	}
 }
 
+@media (max-width: 480px) {
+	.wrapper {
+		width: 100%;
+	}
+}
+
 /**
 * Logo.
 */
