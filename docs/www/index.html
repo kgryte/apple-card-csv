@@ -116,15 +116,18 @@
     <div class="step-2">
   		<h3 class="section-title">Step 2: Upload Statements</h3>
   		<p>
-  			Add multiple statements to generate a single CSV file or add one statement at a time to generate separate CSV files.
+  			Add multiple statements to generate a single CSV file or add one statement at a time to generate separate CSV files. You can add statements by either dragging and dropping or clicking the button below...
   		</p>
-  		<p class="file-input-wrapper">
-  			<input name="file" class="file-input" id="file-input" type="file" accept="application/pdf"  data-multiple-caption="{count} files selected" multiple required>
-  			<label for="file-input" title="Click to upload the Apple card statement(s) you want to convert">
-  				<span>Add statement(s)&hellip;</span>
-  			</label>
-  		</p>
-  		<p class="file-input-error-text" id="file-input-error-text"></p>
+  		<p><strong>Note:</strong> ensure that your statement files include a <code>.pdf</code> filename extension.</p>
+	  	<div title="Drag and drop Apple card statements" class="drag-and-drop-area" id="drap-and-drop-area">
+	  		<p class="file-input-wrapper">
+	  			<input name="file" class="file-input" id="file-input" type="file" accept="application/pdf" data-multiple-caption="{count} files selected" multiple required>
+	  			<label for="file-input" title="Click to upload the Apple card statement(s) you want to convert">
+	  				<span>Add statement(s)&hellip;</span>
+	  			</label>
+	  		</p>
+	  	</div>
+	  	<p class="file-input-error-text" id="file-input-error-text"></p>
   	</div>
 
   	<hr />

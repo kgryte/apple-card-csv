@@ -215,17 +215,33 @@ hr {
 }
 
 /**
-* File input.
+* Drag and drop area.
 */
 
-.file-input-wrapper {
-	padding: 6.25rem 1.25rem;
-
-	text-align: center;
+.drag-and-drop-area {
+	padding: 12px;
 
 	background-color: var(--bg-color);
 }
 
+.drag-and-drop-area-highlight {
+	background-color: var(--dark-gray-color);
+}
+
+/**
+* File input.
+*/
+
+.file-input-wrapper {
+	margin: 0;
+	padding: 6.25rem 1.25rem;
+
+	text-align: center;
+
+	border: 1px dashed var(--light-gray-color);
+}
+
+/* Hide the `input` element, but still keep it "visible" for the browser... */
 .file-input {
     position: absolute;
     z-index: -1;

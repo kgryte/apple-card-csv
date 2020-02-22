@@ -2,7 +2,7 @@
 
 > TODO items.
 
-1.
+1.  library tests
 2.  drag-and-drop
 3.  ads
     -   Google adsense: going to require moving to private server and having a dedicated domain
@@ -16,5 +16,4 @@
 6.  test on mobile
 7.  deploy to own server? could be under areines.com/apple-card-csv/?
     -   may need to redirect from areines.com, since will not have a homepage
-8.  library tests
-9.  
+8. 

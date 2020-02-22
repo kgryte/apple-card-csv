@@ -21,11 +21,11 @@
 // MODULES //
 
 var logger = require( 'debug' );
-var replace = require( '@stdlib/string/replace' );
-var lowercase = require( '@stdlib/string/lowercase' );
 var Uint8Array = require( '@stdlib/array/uint8' );
 var array2csv = require( './../../../lib/array2csv.js' );
 var parse = require( './../../../lib' );
+var dateRange = require( './date_range.js' );
+var createFilename = require( './create_filename.js' );
 
 
 // VARIABLES //
@@ -45,9 +45,11 @@ function main() {
 	var ERROR_TEXT;
 	var $input;
 	var $label;
+	var $drag;
 	var $csv;
 	var $err;
 
+	$drag = document.querySelector( '#drap-and-drop-area' );
 	$input = document.querySelector( '#file-input' );
 
 	$err = document.querySelector( '#file-input-error-text' );
@@ -60,6 +62,152 @@ function main() {
 
 	$input.addEventListener( 'change', onChange, false );
 
+	$drag.addEventListener( 'dragstart', onDragStart, false );
+	$drag.addEventListener( 'dragenter', onDragEnter, false );
+	$drag.addEventListener( 'dragover', onDragOver, false );
+	$drag.addEventListener( 'dragleave', onDragLeave, false );
+	$drag.addEventListener( 'dragend', onDragEnd, false );
+	$drag.addEventListener( 'drop', onDrop, false );
+
+	/**
+	* Callback invoked upon a 'dragstart' event.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	function onDragStart( event ) {
+		debug( 'Detected a "dragstart" event...' );
+		resetError();
+
+		event.preventDefault(); // prevent file(s) from being opened
+		event.stopPropagation();
+	}
+
+	/**
+	* Callback invoked upon a 'dragend' event.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	function onDragEnd( event ) {
+		debug( 'Detected a "dragend" event...' );
+		event.preventDefault(); // prevent file(s) from being opened
+		event.stopPropagation();
+
+		$drag.classList.remove( 'drag-and-drop-area-highlight' );
+	}
+
+	/**
+	* Callback invoked upon a 'dragenter' event.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	function onDragEnter( event ) {
+		debug( 'Detected a "dragenter" event...' );
+		event.preventDefault(); // prevent file(s) from being opened
+		event.stopPropagation();
+
+		$drag.classList.add( 'drag-and-drop-area-highlight' );
+	}
+
+	/**
+	* Callback invoked upon a 'dragover' event.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	function onDragOver( event ) {
+		debug( 'Detected a "dragover" event...' );
+		event.preventDefault(); // prevent file(s) from being opened
+		event.stopPropagation();
+
+		$drag.classList.add( 'drag-and-drop-area-highlight' );
+	}
+
+	/**
+	* Callback invoked upon a 'dragleave' event.
+	*
+	* @private
+	* @param {Object} event - event object
+	*/
+	function onDragLeave( event ) {
+		debug( 'Detected a "dragleave" event...' );
+		event.preventDefault(); // prevent file(s) from being opened
+		event.stopPropagation();
+
+		$drag.classList.remove( 'drag-and-drop-area-highlight' );
+	}
+
+	/**
+	* Callback invoked upon a 'drop' event.
+	*
+	* @private
+	* @param {Object} event - event object
+	* @returns {void}
+	*/
+	function onDrop( event ) {
+		var files;
+		var dt;
+		var f;
+		var i;
+
+		debug( 'Detected a "drop" event...' );
+
+		event.preventDefault(); // prevent file(s) from being opened
+		event.stopPropagation();
+
+		$drag.classList.remove( 'drag-and-drop-area-highlight' );
+
+		dt = event.dataTransfer;
+		files = [];
+		if ( dt.items ) {
+			debug( 'Number of items: %d', dt.items.length );
+
+			// Use `DataTransferItemList` interface to access file(s)...
+			for ( i = 0; i < dt.items.length; i++ ) {
+				f = dt.items[ i ];
+
+				// Only accept files...
+				if ( f.kind !== 'file' ) {
+					debug( 'Unrecognized data transfer type: %s.', f.kind );
+					$err.innerHTML = 'Invalid operation. Please provide an exported statement PDF and try again.';
+					return;
+				}
+				f = f.getAsFile();
+
+				// Only accept PDF files...
+				if ( f.type !== 'application/pdf' ) {
+					debug( 'Unable to load file: %s. File does not have supported MIME type: %s.', f.name, f.type );
+					$err.innerHTML = 'Unable to load file: ' + f.name + '. Invalid file type. Please ensure you have provided an exported statement PDF and try again.';
+					return;
+				}
+				files.push( f );
+			}
+		} else {
+			debug( 'Number of items: %d', dt.files.length );
+
+			// Use `DataTransfer` interface to access file(s)...
+			for ( i = 0; i < dt.files.length; i++ ) {
+				f = dt.files[ i ];
+
+				// Only accept PDF files...
+				if ( f.type !== 'application/pdf' ) {
+					debug( 'Unable to load file: %s. File does not have supported MIME type: %s.', f.name, f.type );
+					$err.innerHTML = 'Unable to load file: ' + f.name + '. Invalid file type. Please ensure you have provided an exported statement PDF and try again.';
+					return;
+				}
+				files.push( f );
+			}
+		}
+		if ( files.length === 0 ) {
+			debug( 'No files selected. Aborting...' );
+			resetLabel();
+			return;
+		}
+		process( files );
+	}
+
 	/**
 	* Callback invoked upon a 'change' event.
 	*
@@ -68,6 +216,23 @@ function main() {
 	* @returns {void}
 	*/
 	function onChange( event ) {
+		debug( 'Detected a change to the file input element...' );
+		resetError();
+		if ( !$input.files || $input.files.length === 0 ) {
+			debug( 'No files selected. Aborting...' );
+			resetLabel();
+			return;
+		}
+		process( $input.files );
+	}
+
+	/**
+	* Processes a list of files.
+	*
+	* @private
+	* @param {ArrayLike} list - list of files
+	*/
+	function process( list ) {
 		var reader;
 		var count;
 		var files;
@@ -76,17 +241,8 @@ function main() {
 		var f;
 		var i;
 
-		// Reset the error text:
-		resetError();
-
-		debug( 'Detected a change to the file input element...' );
-		if ( !$input.files || $input.files.length === 0 ) {
-			debug( 'No files selected. Aborting...' );
-			resetLabel();
-			return;
-		}
-		N = $input.files.length;
-		debug( '%d files selected.', N );
+		N = list.length;
+		debug( 'Processing %d files...', N );
 
 		// Update the label text:
 		$label.innerHTML = 'Converting...';
@@ -97,7 +253,7 @@ function main() {
 		// Process files...
 		files = [];
 		for ( i = 0; i < N; i++ ) {
-			file = $input.files[ i ];
+			file = list[ i ];
 
 			debug( 'Loading file %d of %d: %s...', i+1, N, file.name );
 			reader = new FileReader();
@@ -183,34 +339,6 @@ function main() {
 		}
 
 		/**
-		* Resets the file input label.
-		*
-		* @private
-		*/
-		function resetLabel() {
-			$label.innerHTML = LABEL_TEXT;
-		}
-
-		/**
-		* Resets the file input error text.
-		*
-		* @private
-		*/
-		function resetError() {
-			$err.innerHTML = ERROR_TEXT;
-		}
-
-		/**
-		* Resets file input elements.
-		*
-		* @private
-		*/
-		function reset() {
-			resetLabel();
-			resetError();
-		}
-
-		/**
 		* Converts statement data to CSV.
 		*
 		* @private
@@ -226,112 +354,97 @@ function main() {
 			debug( 'Parsing statement data...' );
 			parse( src, onParse );
 		}
+	}
 
-		/**
-		* Callback invoked upon parsing statement data.
-		*
-		* @private
-		* @param {(Error|null)} error - error object
-		* @param {Array<object>} results - results
-		* @returns {void}
-		*/
-		function onParse( error, results ) {
-			var fname;
-			var blob;
-			var csv;
-			var $li;
-			var $a;
-			var N;
-			var d;
-			if ( error ) {
-				$err.innerHTML = 'Unable generate CSV. Please ensure you have provided an exported statement PDF and try again.';
-				resetLabel();
-				return;
-			}
-			debug( 'Successfully parsed statement data.' );
-			N = results.length;
-			debug( 'Number of transactions: %d', N );
+	/**
+	* Resets the file input label.
+	*
+	* @private
+	*/
+	function resetLabel() {
+		$label.innerHTML = LABEL_TEXT;
+	}
 
-			debug( 'Generating CSV...' );
-			csv = array2csv( results );
+	/**
+	* Resets the file input error text.
+	*
+	* @private
+	*/
+	function resetError() {
+		$err.innerHTML = ERROR_TEXT;
+	}
 
-			// Generate a human readable date range covering the transaction period:
-			d = dateRange( results[ 0 ].Date, results[ N-1 ].Date );
-			debug( 'Date range: %s', d );
+	/**
+	* Resets file input elements.
+	*
+	* @private
+	*/
+	function reset() {
+		resetLabel();
+		resetError();
+	}
 
-			// Create an output filename:
-			fname = createFilename( d );
-			debug( 'Output filename: %s', fname );
-
-			// Create a new link for downloading the results...
-			$li = $csv.querySelector( 'li:first-child' ).cloneNode( true );
-			$a = $li.querySelector( 'a' );
-			$a.textContent = d + ': ' + N + ' transactions';
-			$a.download = fname;
-			blob = new Blob( [ csv ], {
-				'type': 'text/csv'
-			});
-			$a.href = URL.createObjectURL( blob );
-
-			// Append node to list of CSVs available for download:
-			debug( 'Displaying download link...' );
-			$csv.appendChild( $li );
-
-			debug( 'Finished.' );
-			done();
+	/**
+	* Callback invoked upon parsing statement data.
+	*
+	* @private
+	* @param {(Error|null)} error - error object
+	* @param {Array<object>} results - results
+	* @returns {void}
+	*/
+	function onParse( error, results ) {
+		var fname;
+		var blob;
+		var csv;
+		var $li;
+		var $a;
+		var N;
+		var d;
+		if ( error ) {
+			$err.innerHTML = 'Unable generate CSV. Please ensure you have provided an exported statement PDF and try again.';
+			resetLabel();
+			return;
 		}
+		debug( 'Successfully parsed statement data.' );
+		N = results.length;
+		debug( 'Number of transactions: %d', N );
 
-		/**
-		* Returns a human readable date range.
-		*
-		* @private
-		* @param {string} start - starting date
-		* @param {string} stop - ending date
-		* @returns {string} human readable date range
-		*/
-		function dateRange( start, stop ) {
-			var dopts;
-			var d1;
-			var d2;
-			var d;
+		debug( 'Generating CSV...' );
+		csv = array2csv( results );
 
-			dopts = {
-				'year': 'numeric',
-				'month': 'long'
-			};
-			d1 = new Date( start );
-			d1 = d1.toLocaleString( 'default', dopts );
+		// Generate a human readable date range covering the transaction period:
+		d = dateRange( results[ 0 ].Date, results[ N-1 ].Date );
+		debug( 'Date range: %s', d );
 
-			d2 = new Date( stop );
-			d2 = d2.toLocaleString( 'default', dopts );
+		// Create an output filename:
+		fname = createFilename( d );
+		debug( 'Output filename: %s', fname );
 
-			if ( d1 === d2 ) {
-				d = d1;
-			} else {
-				d = d1 + ' to ' + d2;
-			}
-			return d;
-		}
+		// Create a new link for downloading the results...
+		$li = $csv.querySelector( 'li:first-child' ).cloneNode( true );
+		$a = $li.querySelector( 'a' );
+		$a.textContent = d + ': ' + N + ' transactions';
+		$a.download = fname;
+		blob = new Blob( [ csv ], {
+			'type': 'text/csv'
+		});
+		$a.href = URL.createObjectURL( blob );
 
-		/**
-		* Generates an output filename.
-		*
-		* @private
-		* @param {string} drange - human readable date range
-		* @returns {string} output filename
-		*/
-		function createFilename( drange ) {
-			return 'apple_card_statement_' + lowercase( replace( drange, ' ', '_' ) ) + '.csv';
-		}
+		// Append node to list of CSVs available for download:
+		debug( 'Displaying download link...' );
+		$csv.appendChild( $li );
 
-		/**
-		* Callback invoked upon completion.
-		*
-		* @private
-		*/
-		function done() {
-			reset();
-		}
+		debug( 'Finished.' );
+		done();
+	}
+
+	/**
+	* Callback invoked upon completion.
+	*
+	* @private
+	*/
+	function done() {
+		reset();
 	}
 }
 
